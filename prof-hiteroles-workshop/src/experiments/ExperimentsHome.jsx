@@ -4,7 +4,7 @@ import { Route, Link, Switch } from "react-router-dom";
 
 export const navMenu = [
     {
-        path: 'bobble-bubbles',
+        path: 'bottle-bubbles',
         pageComponent: BottleBubbles,
         label: 'Bottle Bubbles',
         exact: true
@@ -19,29 +19,32 @@ export const navMenu = [
 
 const ExperimentsHome = (props) => {
 
-    console.log('props: ', props.match);
     const { match } = props;
 
 return (
     <React.Fragment>
         <Switch>
             {navMenu.map(nav => {
+                const path = !match.path.includes('experiments') ? nav.path : `${match.path}/${nav.path}`;
+
                 return (
-                    <Route component={nav.pageComponent} exact={nav.exact} key={nav.path} path={nav.path} />
+                    <Route component={nav.pageComponent} exact={nav.exact} key={nav.path} path={path} />
                 );
             })}
         </Switch>
 
-        <Link to='/'>Back to Experiments Home</Link>
         {navMenu.map(nav => {
+            const path = !match.path.includes('experiments') ? nav.path : `${match.path}/${nav.path}`;
+            
             return (
-                <p key={nav.path}>
-                    <Link to={nav.path}>MYPATH IS: {nav.path} || {nav.label}</Link>
-                </p>
+                <div>
+                    <p key={nav.path}>
+                        <Link to={path}>{nav.label}</Link>
+                    </p>
+                </div>
             );
         })}
     </React.Fragment>
-
 )}
 
 
