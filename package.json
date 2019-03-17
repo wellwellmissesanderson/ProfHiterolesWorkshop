@@ -1,0 +1,19 @@
+{
+  "name": "prof-hiteroles-workshop",
+  "version": "0.0.1",
+  "description": "A place where CSS comes to play.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wellwellmissesanderson/ProfHiterolesWorkshop.git"
+  },
+  "author": "Heather Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wellwellmissesanderson/ProfHiterolesWorkshop/issues"
+  },
+  "homepage": "https://github.com/wellwellmissesanderson/ProfHiterolesWorkshop#readme"
+}
