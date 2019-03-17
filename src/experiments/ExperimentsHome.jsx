@@ -1,19 +1,21 @@
 import React from 'react';
-import { BottleBubbles } from './';
-import { Route, Link, Switch } from "react-router-dom";
+import { Experiment } from './';
+import BottleBubbles from './bottle-bubbles/BottleBubbles';
+import MineSweeper from './minesweeper/MineSweeper';
+import { Link, Route } from "react-router-dom";
 
 export const navMenu = [
     {
         path: 'bottle-bubbles',
-        pageComponent: BottleBubbles,
+        pageComponent: <BottleBubbles />,
         label: 'Bottle Bubbles',
         exact: true
     },
     {
-        path: 'some-other',
-        pageComponent: null,
-        label: 'some other',
-        exact: true
+        path: 'minesweeper',
+        pageComponent: <MineSweeper />,
+        label: 'MineSweeper',
+        exact: false
     }
 ];
 
@@ -21,31 +23,22 @@ const ExperimentsHome = (props) => {
 
     const { match } = props;
 
-return (
-    <React.Fragment>
-        <Switch>
+    return (
+        <React.Fragment>
             {navMenu.map(nav => {
-                const path = !match.path.includes('experiments') ? nav.path : `${match.path}/${nav.path}`;
-
+                
                 return (
-                    <Route component={nav.pageComponent} exact={nav.exact} key={nav.path} path={path} />
+                    <div key={nav.path}>
+                        <Link to={`${match.url}/${nav.path}`}>{nav.label}</Link>
+
+                        <Route exact={true} path={`/experiments/${nav.path}`} render={() => <Experiment  children={nav.pageComponent} />} />
+                    </div>
                 );
             })}
-        </Switch>
 
-        {navMenu.map(nav => {
-            const path = !match.path.includes('experiments') ? nav.path : `${match.path}/${nav.path}`;
-            
-            return (
-                <div>
-                    <p key={nav.path}>
-                        <Link to={path}>{nav.label}</Link>
-                    </p>
-                </div>
-            );
-        })}
-    </React.Fragment>
-)}
+        </React.Fragment>
+    );
+}
 
 
 export default ExperimentsHome;
