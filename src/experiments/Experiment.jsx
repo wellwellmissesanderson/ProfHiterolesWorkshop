@@ -14,7 +14,7 @@ const StyledExperiment = styled.div`
 `;
 
 const Experiment = (props) => {
-    console.log('experiment props > ', props);
+    // console.log('experiment props > ', props);
     return (
         <StyledExperiment bgImg={props.bgImg}>
             {props.children}
