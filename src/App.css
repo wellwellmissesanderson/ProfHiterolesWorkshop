@@ -32,7 +32,11 @@ a {
 
 #root {
   font-family: 'Khula', sans-serif;
-  background: hotpink;
+}
+
+body {
+    background: linear-gradient(45deg, #02001F,#1F1B4E);
+    
 }
 
 @keyframes App-logo-spin {

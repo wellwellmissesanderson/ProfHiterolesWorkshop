@@ -2,37 +2,34 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
 
-const splitPosition = '49%';
+const splitPosition = '40%';
 const splitThickness = '4px';
-const splitColor = '#FF2C75';
+const splitColor = 'white';
+const fontSize = '50px';
 
 const StyledHeader = styled.header`
-    .nav-wrapper {
-        border: 2px solid teal;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: space-around;
 
-        li {
-            color: white;
-        }
+    .menu-list {
+        font-size: ${fontSize};
+        line-height: 1.2;
+        transform: rotateX(-10deg) rotateY(20deg);
+        text-transform: uppercase;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
-    .item {
-        font-size: 20px;
-        display: block;
-        position: absolute;
-        overflow: hidden;
-        color: ${splitColor};
-        top: 0;
-        height: ${splitPosition};
-        transition: all .8s cubic-bezier(.16,1.08,.38,.98);
-
+    .menu-list-item {
+        position: relative;
+        color: transparent;
+        cursor: pointer;
+        
         &::before {
             content: '';
             display: block;
             position: absolute;
-            top: $split-position;
+            top: ${splitPosition};
             left: -10%;
             right: -10%;
             height: ${splitThickness};
@@ -49,26 +46,30 @@ const StyledHeader = styled.header`
         display: block;
         position: absolute;
         overflow: hidden;
-        color: $split-color;
+        color: ${splitColor};
         top: 0;
-        height: $split-position;
+        height: ${splitPosition};
         transition: all .8s cubic-bezier(.16,1.08,.38,.98);
         
         span { display: block; }
-        }
+    }
 
     // bottom mask only
     .mask + .mask {
-    top: $split-position - 0.1;
-    height: 100 - $split-position + 0.1;
-    
-    span { transform: translateY(-$split-position); }
+        top: ${splitPosition};
+        height: ${splitPosition};
+        
+        span {
+            color: white;
+            transform: translateY(-${splitPosition});
+        }
     }
 
-    .item:hover,
-    .item:active {
+    .menu-list-item:hover,
+    .menu-list-item:active {
         .mask {
-            color: black; transform: skewX(12deg) translateX(5px);
+            color: tomato;
+            transform: skewX(12deg) translateX(5px);
         }
         .mask + .mask {
             transform: skewX(12deg) translateX(-5px);
@@ -81,15 +82,20 @@ const Header = (props) => {
 
 return (
     <StyledHeader>
-        <ul className="nav-wrapper">
-            <li className="item">
+        <ul className="menu-list">
+            <li className="menu-list-item">
                 Home
-                <NavLink className="mask" to='/'>Home</NavLink>
-                <NavLink className="mask" to='/'>Home</NavLink>
+                <NavLink className="mask" to='/'><span>Home</span></NavLink>
+                <NavLink className="mask bottom" to='/'><span>Home</span></NavLink>
             </li>
-            <li>
+            <li className="menu-list-item">
+                Experiments
+                <NavLink className="mask" to='/'><span>Experiments</span></NavLink>
+                <NavLink className="mask bottom" to='/'><span>Experiments</span></NavLink>
+            </li>
+            {/* <li>
                 <NavLink to='/experiments'>Experiments</NavLink>
-            </li>
+            </li> */}
         </ul>
     </StyledHeader>
 
